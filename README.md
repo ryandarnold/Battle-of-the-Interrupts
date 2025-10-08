@@ -1,2 +1,9 @@
 # Battle-of-the-Interrupts-full-game
-This has the lab 10 code, plus I'm adding the character selection and professor's heads and joystick
+
+Here is a video of the game: 
+
+
+
+https://github.com/user-attachments/assets/71c72400-338f-4e4b-98fc-ee57f317b391
+
+
