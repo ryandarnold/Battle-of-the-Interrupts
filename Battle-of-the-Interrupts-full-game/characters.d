@@ -1,0 +1,10 @@
+.\characters.o: Characters.c
+.\characters.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\characters.o: tm4c123gh6pm.h
+.\characters.o: ST7735.h
+.\characters.o: Random.h
+.\characters.o: PLL.h
+.\characters.o: ADC.h
+.\characters.o: Sound.h
+.\characters.o: Timer0.h
+.\characters.o: Timer1.h
