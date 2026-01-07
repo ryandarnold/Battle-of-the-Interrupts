@@ -1,0 +1,12 @@
+.\portinit.o: portInit.c
+.\portinit.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\portinit.o: tm4c123gh6pm.h
+.\portinit.o: ST7735.h
+.\portinit.o: Random.h
+.\portinit.o: PLL.h
+.\portinit.o: ADC.h
+.\portinit.o: Sound.h
+.\portinit.o: Timer0.h
+.\portinit.o: Timer1.h
+.\portinit.o: Characters.h
+.\portinit.o: ButtonInput.h
