@@ -27,18 +27,6 @@
  */
  
  
-// ******* Possible Hardware I/O connections*******************
-// Slide pot pin 1 connected to ground
-// Slide pot pin 2 connected to PD2/AIN5
-// Slide pot pin 3 connected to +3.3V 
-// fire button connected to PE0
-// special weapon fire button connected to PE1
-// 8*R resistor DAC bit 0 on PB0 (least significant bit)
-// 4*R resistor DAC bit 1 on PB1
-// 2*R resistor DAC bit 2 on PB2
-// 1*R resistor DAC bit 3 on PB3 (most significant bit)
-// LED on PB4
-// LED on PB5
 
 // Backlight (pin 10) connected to +3.3 V
 // MISO (pin 9) unconnected
@@ -101,10 +89,8 @@ void PortF_Init(void){
 }
 
 void GPIOPortF_Handler(void){
-	GPIO_PORTF_ICR_R = 0x10;      // acknowledge flag4
-	
+	GPIO_PORTF_ICR_R = 0x10; // acknowledge flag4
 	Delay100ms(1);
-  
 	PF1 ^= 0x2;
 }
 
@@ -114,17 +100,11 @@ void SysTick_Init(void){
 		NVIC_ST_CURRENT_R = 0;
 		NVIC_SYS_PRI3_R = 0xA0000000;
 		NVIC_ST_CTRL_R = 0x07;	
-	
 }
 
 void SysTick_Handler(void){
-		
-		//PF2	^= 0x4;
-		//PF1 ^= 0x2;
 		ADCMail = ADC_In(); //gets the input from the ADC_In to run at 60Hz
 		ADCstatus = 1;
-		//PF3	^= 0x8;
-	
 }
 
 
@@ -134,7 +114,8 @@ uint32_t Convert(uint32_t input){
 }
 
 
-int mainSoundTest(void){ 		//Works, but has tons of static
+int mainSoundTest(void)
+{ //Works, but has tons of static
 	PLL_Init(Bus80MHz); 
 	Output_Init();
 	DAC_Init();
@@ -164,8 +145,6 @@ int mainTestMech(void){
 	randomInput();
 	ST7735_FillScreen(0x0000); 
 	while(1){}
-
-	
 }
 
 void flagZero(void){
@@ -199,11 +178,6 @@ int main(void){
 	ST7735_FillScreen(0x0000); 
 	ST7735_DrawBitmap(35,160,Yerraballi1,25,40);
 	ST7735_DrawBitmap(80,160,Ninja1Flipped,20,33);
-	//ST7735_DrawBitmap(80,160,Ninja1Flipped,20,33);
-//	ST7735_FillScreen(0x0000);   
-//	ST7735_DrawBitmap(5,160,Ninja3Flipped,45,36);
-//	ST7735_DrawBitmap(5,160,Ninja2Flipped,65,34);
-//	S4T7735_DrawBitmap(5,160,Ninja2,65,34);
 	portCEdgeInit();
 	portEEdgeInit();
 	SysTick_Init();
@@ -253,30 +227,28 @@ int main(void){
 			ST7735_DrawBitmap(80,160,Ninja1Flipped,20,33);
 			ST7735_SetCursor(0,0);
 			flagZero();
-			
 		}			
 		
-		
-		while ((checkPlayer1() ==1)){
+		while ((checkPlayer1() ==1))
+		{
 				while(ADCstatus == 0){}
 				ADCstatus = 0;
 				info = Convert(ADCMail);
 				randomInput();
-					flagZero();
+				flagZero();
 				ST7735_FillScreen(0x0000); 
 				ST7735_SetCursor(0,0);
 				ST7735_OutString("Player 1 attacks\n");
 				ST7735_OutString("Player 1 health: ");
 				LCD_OutDec(warrior1.health);
 				ST7735_OutString("\nPlayer 2 health: ");
-				LCD_OutDec(warrior2.health);
-				
-				//ST7735_SetCursor(9,0);	
+				LCD_OutDec(warrior2.health);	
 					
 				ST7735_DrawBitmap(35,160,Yerraballi1,25,40);
 				ST7735_DrawBitmap(80,160,Ninja1Flipped,20,33);
 					
-				while (info <= 800){
+				while (info <= 800)
+				{
 					while(ADCstatus == 0){}
 					ADCstatus = 0;
 					info = Convert(ADCMail);
@@ -358,7 +330,6 @@ int main(void){
 				LCD_OutDec(correctInput[2]); 
 				ST7735_SetCursor(0,0);
 				
-				
 				if (warrior2.health <= 0){
 					//Display victory message
 					ST7735_FillScreen(0x0000);
@@ -389,13 +360,13 @@ int main(void){
 				ST7735_OutString("Player 1 health: ");
 				LCD_OutDec(warrior1.health);
 				ST7735_OutString("\nPlayer 2 health: ");
-				LCD_OutDec(warrior2.health);
-				//ST7735_SetCursor(9,0);	
+				LCD_OutDec(warrior2.health);	
 					
 				ST7735_DrawBitmap(35,160,Yerraballi1,25,40);
 				ST7735_DrawBitmap(80,160,Ninja1Flipped,20,33);
 					
-				while (info <= 800){
+				while (info <= 800)
+				{
 					while(ADCstatus == 0){}
 					ADCstatus = 0;
 					info = Convert(ADCMail);
@@ -412,7 +383,8 @@ int main(void){
 				ST7735_OutString("\nPlayer 2 health: ");
 				LCD_OutDec(warrior2.health);
 				
-				while (info <= 1800){
+				while (info <= 1800)
+				{
 					while(ADCstatus == 0){}
 					ADCstatus = 0;
 					info = Convert(ADCMail);
@@ -554,48 +526,31 @@ int main(void){
 			}
 				
 			}
-	
-	
-//	while(1){}
 
 
 int mainTest(void){
-  PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
-	
-
-		
+    PLL_Init(Bus80MHz); // Bus clock is 80 MHz 
 	PortF_Init();
 	ADC_Init();
 	ST7735_InitR(INITR_REDTAB);
-	
-  //Random_Init(1);
-  //Output_Init();
+
 	Sound_Init();
 	
-	uint16_t	info;
-  ST7735_FillScreen(0x0000);            // set screen to black
+	uint16_t info;
+    ST7735_FillScreen(0x0000); // set screen to black
 	ST7735_DrawBitmap(10,100,BattleOfTheInterrupts1,100,54);
 	
-	//Delay100ms(10); //change this out for an interrupt thing
+	ST7735_FillScreen(0x0000); // set screen to black
 	
-	ST7735_FillScreen(0x0000);            // set screen to black
-	
-	
-	//first two tell position, name is name of pic, and then next numbers are size (check in paint)
-	ST7735_DrawBitmap(5,160,Ninja3Flipped,45,36); //THIS PICTURE IS 100% CORRECT DON'T ALTER - ONLY WORKS WITH ADDED MEMORY
-	
-	//ST7735_DrawBitmap(5,160,Ninja2Flipped,65,34);//THIS PICTURE IS 100% CORRECT DONT ALTER
-  //ST7735_DrawBitmap(5,160,Ninja1,23,37); //THIS PICTURE IS 100% CORRECT DONT ALTER
-	//ST7735_DrawBitmap(0,160,Yerraballi2,75,40); //THIS PICTURE IS 100% CORRECT DONT ALTER
-	//ST7735_DrawBitmap(70,160,Ninja3,45,36); // THIS PICTURE IS 100% CORRECT DONT ALTER
-	//ST7735_DrawBitmap(80,160,Ninja1Flipped,20,33); //THIS PICTURE IS 100% CORRECT DONT ALTER
+	//first two tell position, name is name of picture, and then next numbers are size
+	ST7735_DrawBitmap(5,160,Ninja3Flipped,45,36); 
 	
 	ST7735_SetCursor(1, 1);
 	ST7735_OutString("GAME OVER");
 	LCD_OutDec(1234);
 	
 	SysTick_Init();
-	EnableInterrupts();  //systick only works for ADC if i enable it after i display shit. 
+	EnableInterrupts();  //systick only works for ADC if i enable it after i display stuff. 
 	//DisableInterrupts();
 	while(1)
 		{
@@ -610,14 +565,6 @@ int mainTest(void){
   
 }
 
-//void Systick_Handler
-
-
-
-
-
-// You can't use this timer, it is here for starter code only 
-// you must use interrupts to perform delays
 void Delay100ms(uint32_t count){uint32_t volatile time;
   while(count>0){
     time = 727240;  // 0.1sec at 80 MHz
