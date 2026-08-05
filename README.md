@@ -4,7 +4,7 @@
 
 https://github.com/user-attachments/assets/f9fed2b9-974a-4061-9835-4bd3a02f9d93
 
-
+<img src="https://github.com/user-attachments/assets/f9fed2b9-974a-4061-9835-4bd3a02f9d93" width="500">
 
 
 The goal of this project was to create a video game on an embedded system. 
